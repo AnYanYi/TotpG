@@ -23,7 +23,7 @@
 
 ## 🚀 在线使用
 
-1. 访问在线版本：[GitHub Pages](https://otp.tbbbk.com)
+1. 访问在线版本：[GitHub Pages](https://anyanyi.github.io/TotpG)
 2. 输入您的 Base32 格式密钥
 3. 验证码将自动生成并每 30 秒更新一次
 4. 点击复制按钮将验证码复制到剪贴板

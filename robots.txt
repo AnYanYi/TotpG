@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /js/assets/
+
+# Sitemap
+Sitemap: https://anyanyi.github.io/TotpG/sitemap.xml
+
+# 搜索引擎抓取延迟（秒）
+Crawl-delay: 1
