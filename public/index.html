@@ -5,232 +5,240 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TOTP 验证码生成器 - 免费在线双因素认证工具 | TbbbK</title>
   
-  <!-- SEO Meta Tags -->
   <meta name="description" content="免费的在线TOTP验证码生成器，支持双因素认证（2FA）。本地计算，安全可靠，支持Google Authenticator、Microsoft Authenticator等应用的验证码生成。">
   <meta name="keywords" content="TOTP,验证码生成器,双因素认证,2FA,Google Authenticator,二次验证,在线工具,安全工具">
   <meta name="author" content="TbbbK">
   <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <meta name="revisit-after" content="7 days">
   
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="TOTP 验证码生成器 - 免费在线双因素认证工具">
-  <meta property="og:description" content="免费的在线TOTP验证码生成器，支持双因素认证（2FA）。本地计算，安全可靠，支持Google Authenticator等应用。">
-  <meta property="og:url" content="https://anyanyi.github.io/TotpG/">
-  <meta property="og:site_name" content="TbbbK Tools">
-  <meta property="og:locale" content="zh_CN">
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="TOTP 验证码生成器 - 免费在线双因素认证工具">
-  <meta name="twitter:description" content="免费的在线TOTP验证码生成器，支持双因素认证（2FA）。本地计算，安全可靠。">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://anyanyi.github.io/TotpG/">
-  
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575792568070780"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575792568070780" crossorigin="anonymous"></script>
   
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/bulma-0.9.4.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
   <style>
-    [v-cloak] {
-      display: none;
-    }
+    /* =========================================
+       方案一：现代简约风 (Modern Minimalist)
+       ========================================= */
+    
+    [v-cloak] { display: none; }
 
     html, body {
       height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f4f6; /* 柔和的浅灰背景，护眼且专业 */
+      color: #1f2937;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     body > footer {
-      position: sticky;
-      top: 100vh;
+      margin-top: auto;
+      width: 100%;
     }
 
     .footer {
       padding: 2rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      color: #9ca3af;
     }
 
     .section {
       padding: 3rem 1.5rem;
+      min-height: calc(100vh - 100px); /* 确保内容少时 footer 也在底部 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .main-container {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
+      background: #ffffff;
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      /* 更加细腻的高级阴影 */
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
       padding: 3rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .title {
-      color: #363636;
-      text-align: center;
-      margin-bottom: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .field {
-      margin-bottom: 1.5rem;
-    }
-
-    .label {
-      color: #4a4a4a;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .input {
-      border-radius: 12px;
-      border: 2px solid #e8e8e8;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .input:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .token-display {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      border: 1px solid #e5e7eb;
       position: relative;
       overflow: hidden;
     }
 
-    .token-display::before {
-      content: '';
+    /* 顶部装饰条，增加一点设计感 */
+    .main-container::top {
+      content: "";
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      animation: shimmer 2s infinite;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
     }
 
-    @keyframes shimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
+    .title {
+      color: #111827;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .field { margin-bottom: 1.5rem; }
+
+    .label {
+      color: #374151;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    /* 覆盖 Bulma 的 input 样式 */
+    .input {
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      box-shadow: none;
+      background: #f9fafb;
+      transition: all 0.2s ease;
+      height: auto;
+    }
+
+    .input:focus {
+      border-color: #3b82f6;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .token-display {
+      background: #eff6ff; /* 极淡的蓝色背景 */
+      border: 1px dashed #bfdbfe;
+      border-radius: 16px;
+      padding: 2rem 1rem;
+      margin: 2rem 0;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    
+    .token-display:hover {
+      border-color: #3b82f6;
+      background: #ebf5ff;
     }
 
     .token-text {
-      color: white;
-      font-size: 3rem;
+      color: #2563eb; /* 品牌蓝 */
+      font-size: 3.5rem;
       font-weight: 700;
-      text-align: center;
-      font-family: 'Courier New', monospace;
-      letter-spacing: 0.1em;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'SF Mono', 'Roboto Mono', 'Courier New', monospace;
+      letter-spacing: 0.2em;
+      line-height: 1;
+      margin: 0;
     }
 
-    .progress-container {
-      margin: 1.5rem 0;
-    }
+    .progress-container { margin: 1.5rem 0; }
 
     .progress-info {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #6b7280;
     }
 
+    /* 自定义进度条样式 */
     .progress {
-      height: 8px;
-      border-radius: 4px;
-      background: rgba(102, 126, 234, 0.1);
+      height: 8px !important;
+      border-radius: 999px !important;
+      background: #f3f4f6 !important;
     }
 
     .progress::-webkit-progress-value {
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      border-radius: 4px;
+      background: #3b82f6;
+      border-radius: 999px;
+      transition: width 1s linear;
+    }
+    
+    .progress::-moz-progress-bar {
+      background: #3b82f6;
+      border-radius: 999px;
     }
 
     .copy-button {
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: #3b82f6;
       border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      border-radius: 12px;
+      width: 56px;
+      height: 56px;
       color: white;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+      float: right;
     }
 
     .copy-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
     }
 
-    .copy-button i {
-      font-size: 1.2rem;
+    .copy-button:active {
+      transform: translateY(0);
     }
 
     .info-card {
-      background: rgba(102, 126, 234, 0.1);
+      background: #f9fafb;
       border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-left: 4px solid #667eea;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #3b82f6;
+      color: #4b5563;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
     }
-
-    .footer-content {
-      color: rgba(255, 255, 255, 0.8);
-      text-align: center;
+    
+    .info-card i {
+      margin-right: 0.75rem;
+      color: #3b82f6;
+    }
+    
+    .info-card p {
+        margin-bottom: 0 !important;
     }
 
     .footer-content a {
-      color: rgba(255, 255, 255, 0.9);
+      color: #6b7280;
       text-decoration: none;
-      transition: color 0.3s ease;
+      border-bottom: 1px dotted #9ca3af;
+      transition: color 0.2s;
     }
 
     .footer-content a:hover {
-      color: white;
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
     }
 
-    @media screen and (min-width: 1068px) {
+    @media screen and (min-width: 768px) {
       .container {
-        max-width: 600px;
-        width: 600px;
+        max-width: 520px; /* 收窄宽度，看起来更精致 */
+      }
+      .token-text {
+        font-size: 3rem;
       }
     }
-
+    
     @media screen and (max-width: 768px) {
-      .main-container {
-        padding: 2rem 1.5rem;
-        margin: 0 1rem;
-      }
-
-      .token-text {
-        font-size: 2rem;
-      }
+        .token-text {
+            font-size: 2.2rem;
+            letter-spacing: 0.1em;
+        }
+        .main-container {
+            padding: 2rem 1.5rem;
+        }
     }
   </style>
 </head>
@@ -247,67 +255,74 @@
       <article class="main-container">
 
         <header>
-          <h1 class="title is-size-2">🔐 TOTP 验证码生成器</h1>
+          <h1 class="title is-size-3">🔐 TOTP 验证码生成器</h1>
         </header>
 
         <section class="info-card">
-          <p class="has-text-grey-dark">
-            <i class="fas fa-info-circle"></i> 
-            输入您的密钥信息来生成基于时间的一次性密码（TOTP）
-          </p>
+          <i class="fas fa-info-circle"></i> 
+          <p>输入密钥即可生成基于时间的一次性密码 (TOTP)</p>
         </section>
 
         <div class="field">
           <label class="label">
-            <i class="fas fa-key"></i> 密钥 (Secret Key)
+            <i class="fas fa-key" style="margin-right: 5px;"></i> 密钥 (Secret Key)
           </label>
           <div class="control">
             <input class="input" type="text" v-model="secret_key" placeholder="请输入 Base32 格式的密钥">
           </div>
         </div>
 
-        <div class="field">
-          <label class="label">
-            <i class="fas fa-hashtag"></i> 验证码位数
-          </label>
-          <div class="control">
-            <input class="input" type="number" v-model="digits" placeholder="通常为 6 位">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">
-            <i class="fas fa-clock"></i> 更新周期（秒）
-          </label>
-          <div class="control">
-            <input class="input" type="number" v-model="period" placeholder="通常为 30 秒">
-          </div>
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="field">
+                  <label class="label">
+                    <i class="fas fa-hashtag" style="margin-right: 5px;"></i> 位数
+                  </label>
+                  <div class="control">
+                    <input class="input" type="number" v-model="digits" placeholder="6">
+                  </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="field">
+                  <label class="label">
+                    <i class="fas fa-clock" style="margin-right: 5px;"></i> 周期(秒)
+                  </label>
+                  <div class="control">
+                    <input class="input" type="number" v-model="period" placeholder="30">
+                  </div>
+                </div>
+            </div>
         </div>
 
         <div class="progress-container">
           <div class="progress-info">
-            <span class="has-text-grey">
-              <i class="fas fa-sync-alt"></i> {{ updatingIn }} 秒后更新
+            <span>
+              <i class="fas fa-sync-alt fa-spin" v-if="updatingIn <= 5"></i>
+              <i class="fas fa-sync-alt" v-else></i>
+              {{ updatingIn }} 秒后更新
             </span>
-            <span class="has-text-grey">{{ Math.round((updatingIn / period) * 100) }}%</span>
+            <span>{{ Math.round((updatingIn / period) * 100) }}%</span>
           </div>
-          <progress class="progress is-info" v-bind:value="updatingIn" :max="period"></progress>
+          <progress class="progress" v-bind:value="updatingIn" :max="period"></progress>
         </div>
 
         <div class="token-display">
-          <p class="token-text" id="token">{{ token || '-- -- --' }}</p>
+          <p class="token-text" id="token">{{ token || '--- ---' }}</p>
         </div>
 
-        <div class="control is-clearfix">
-          <button class="copy-button is-pulled-right" id="clipboard-button" data-clipboard-target="#token" title="复制验证码到剪贴板">
-            <i class="fas fa-copy"></i>
+        <div class="control is-clearfix" style="margin-top: -1rem;">
+          <button class="copy-button" id="clipboard-button" data-clipboard-target="#token" title="复制验证码">
+            <i class="fas fa-copy is-size-5"></i>
           </button>
         </div>
 
-        <section class="info-card">
-          <p class="has-text-grey-dark is-size-7">
-            <i class="fas fa-shield-alt"></i> 
-            您的密钥不会被上传到服务器，所有计算都在本地完成
+        <div style="clear: both; margin-bottom: 2rem;"></div>
+
+        <section class="info-card" style="background: #f0fdf4; border-left-color: #22c55e; color: #166534;">
+          <i class="fas fa-shield-alt" style="color: #16a34a;"></i> 
+          <p class="is-size-7">
+            安全提示：您的密钥仅在本地浏览器计算，绝不会上传至服务器。
           </p>
         </section>
 
@@ -320,44 +335,23 @@
     <div class="container">
       <div class="footer-content">
         <p>
-          由 <a href="https://tbbbk.com">TbbbK</a> 美化改进 | 
-          基于 <a href="https://github.com/jaden/totp-generator">原始项目</a> | 
-          源代码托管在 <a href="https://github.com/AnYanYi/TotpG">Github</a>
+          Powered by <a href="https://github.com/jaden/totp-generator" target="_blank">TOTP Generator</a> | 
+          Source on <a href="https://github.com/AnYanYi/TotpG" target="_blank">Github</a>
         </p>
       </div>
     </div>
   </footer>
 
-  <!-- JSON-LD 结构化数据 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "TOTP 验证码生成器",
-    "description": "免费的在线TOTP验证码生成器，支持双因素认证（2FA）。本地计算，安全可靠，支持Google Authenticator等应用。",
-    "url": "https://anyanyi.github.io/TotpG/",
+    "description": "免费的在线TOTP验证码生成器，支持双因素认证（2FA）。本地计算，安全可靠。",
     "applicationCategory": "SecurityApplication",
     "operatingSystem": "Web Browser",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "TbbbK",
-      "url": "https://tbbbk.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "TbbbK",
-      "url": "https://tbbbk.com"
-    },
-    "datePublished": "2025-01-21",
-    "dateModified": "2025-01-21",
-    "inLanguage": "zh-CN",
-    "isAccessibleForFree": true,
-    "keywords": ["TOTP", "验证码生成器", "双因素认证", "2FA", "Google Authenticator", "安全工具"]
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "TbbbK" }
   }
   </script>
 
